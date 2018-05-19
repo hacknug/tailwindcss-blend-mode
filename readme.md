@@ -1,4 +1,4 @@
-# Tailwind CSS Cursor Extended Plugin
+# Tailwind CSS Blend Mode Plugin
 
 This plugin adds utilities to use blend-modes with Tailwind CSS.
 

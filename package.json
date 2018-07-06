@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-blend-mode",
   "version": "0.1.2",
-  "description": "Describe what this plugin does",
+  "description": "Blend-mode utilities for Tailwind CSS.",
   "main": "index.js",
   "repository": {
     "type": "git",

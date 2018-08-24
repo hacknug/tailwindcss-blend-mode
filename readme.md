@@ -37,6 +37,7 @@ require('tailwindcss-blend-mode')(['responsive'])
 .blend-saturation { mix-blend-mode: saturation; }
 .blend-color { mix-blend-mode: color; }
 .blend-luminosity { mix-blend-mode: luminosity; }
+
 .bg-blend-normal { background-blend-mode: normal; }
 .bg-blend-multiply { background-blend-mode: multiply; }
 .bg-blend-screen { background-blend-mode: screen; }
@@ -53,6 +54,7 @@ require('tailwindcss-blend-mode')(['responsive'])
 .bg-blend-saturation { background-blend-mode: saturation; }
 .bg-blend-color { background-blend-mode: color; }
 .bg-blend-luminosity { background-blend-mode: luminosity; }
+
 .isolate { isolation: isolate; }
 .isolate-none { isolation: auto; }
 ```

@@ -7,6 +7,9 @@ This plugin adds utilities to use blend-modes with Tailwind CSS.
 Add this plugin to your project:
 
 ```bash
+# Install using pnpm
+pnpm install --save-dev tailwindcss-blend-mode
+
 # Install using npm
 npm install --save-dev tailwindcss-blend-mode
 

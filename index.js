@@ -1,48 +1,70 @@
-module.exports = function(variants) {
-  return function({ addUtilities }) {
-    addUtilities(
-      {
-        // Mix Blend Mode
-        '.blend-normal': { mixBlendMode: 'normal' },
-        '.blend-multiply': { mixBlendMode: 'multiply' },
-        '.blend-screen': { mixBlendMode: 'screen' },
-        '.blend-overlay': { mixBlendMode: 'overlay' },
-        '.blend-darken': { mixBlendMode: 'darken' },
-        '.blend-lighten': { mixBlendMode: 'lighten' },
-        '.blend-color-dodge': { mixBlendMode: 'color-dodge' },
-        '.blend-color-burn': { mixBlendMode: 'color-burn' },
-        '.blend-hard-light': { mixBlendMode: 'hard-light' },
-        '.blend-soft-light': { mixBlendMode: 'soft-light' },
-        '.blend-difference': { mixBlendMode: 'difference' },
-        '.blend-exclusion': { mixBlendMode: 'exclusion' },
-        '.blend-hue': { mixBlendMode: 'hue' },
-        '.blend-saturation': { mixBlendMode: 'saturation' },
-        '.blend-color': { mixBlendMode: 'color' },
-        '.blend-luminosity': { mixBlendMode: 'luminosity' },
+var _ = require('lodash')
+var flatten = require('flat')
 
-        // Background Blend Mode
-        '.bg-blend-normal': { backgroundBlendMode: 'normal' },
-        '.bg-blend-multiply': { backgroundBlendMode: 'multiply' },
-        '.bg-blend-screen': { backgroundBlendMode: 'screen' },
-        '.bg-blend-overlay': { backgroundBlendMode: 'overlay' },
-        '.bg-blend-darken': { backgroundBlendMode: 'darken' },
-        '.bg-blend-lighten': { backgroundBlendMode: 'lighten' },
-        '.bg-blend-color-dodge': { backgroundBlendMode: 'color-dodge' },
-        '.bg-blend-color-burn': { backgroundBlendMode: 'color-burn' },
-        '.bg-blend-hard-light': { backgroundBlendMode: 'hard-light' },
-        '.bg-blend-soft-light': { backgroundBlendMode: 'soft-light' },
-        '.bg-blend-difference': { backgroundBlendMode: 'difference' },
-        '.bg-blend-exclusion': { backgroundBlendMode: 'exclusion' },
-        '.bg-blend-hue': { backgroundBlendMode: 'hue' },
-        '.bg-blend-saturation': { backgroundBlendMode: 'saturation' },
-        '.bg-blend-color': { backgroundBlendMode: 'color' },
-        '.bg-blend-luminosity': { backgroundBlendMode: 'luminosity' },
+module.exports = function () {
+  return function ({
+    addUtilities, addComponents, addBase, addVariant,
+    e, prefix, theme, variants, config,
+  }) {
+    const buildObjectFromTheme = themeKey => {
+      const buildObject = ([ modifier, value ]) => [ modifier, { [themeKey]: value } ]
+      const themeEntries = Object.entries(theme(themeKey, {})).map(entry => buildObject(entry))
+      return _.fromPairs(themeEntries)
+    }
 
-        // Isolate
-        '.isolate': { isolation: 'isolate' },
-        '.isolate-none': { isolation: 'auto' },
-      },
-      variants
-    )
+    const pluginUtilities = {
+        'blend': {
+          'normal': { mixBlendMode: 'normal' },
+          'multiply': { mixBlendMode: 'multiply' },
+          'screen': { mixBlendMode: 'screen' },
+          'overlay': { mixBlendMode: 'overlay' },
+          'darken': { mixBlendMode: 'darken' },
+          'lighten': { mixBlendMode: 'lighten' },
+          'color-dodge': { mixBlendMode: 'color-dodge' },
+          'color-burn': { mixBlendMode: 'color-burn' },
+          'hard-light': { mixBlendMode: 'hard-light' },
+          'soft-light': { mixBlendMode: 'soft-light' },
+          'difference': { mixBlendMode: 'difference' },
+          'exclusion': { mixBlendMode: 'exclusion' },
+          'hue': { mixBlendMode: 'hue' },
+          'saturation': { mixBlendMode: 'saturation' },
+          'color': { mixBlendMode: 'color' },
+          'luminosity': { mixBlendMode: 'luminosity' },
+        },
+        'bg-blend': {
+          'normal': { backgroundBlendMode: 'normal' },
+          'multiply': { backgroundBlendMode: 'multiply' },
+          'screen': { backgroundBlendMode: 'screen' },
+          'overlay': { backgroundBlendMode: 'overlay' },
+          'darken': { backgroundBlendMode: 'darken' },
+          'lighten': { backgroundBlendMode: 'lighten' },
+          'color-dodge': { backgroundBlendMode: 'color-dodge' },
+          'color-burn': { backgroundBlendMode: 'color-burn' },
+          'hard-light': { backgroundBlendMode: 'hard-light' },
+          'soft-light': { backgroundBlendMode: 'soft-light' },
+          'difference': { backgroundBlendMode: 'difference' },
+          'exclusion': { backgroundBlendMode: 'exclusion' },
+          'hue': { backgroundBlendMode: 'hue' },
+          'saturation': { backgroundBlendMode: 'saturation' },
+          'color': { backgroundBlendMode: 'color' },
+          'luminosity': { backgroundBlendMode: 'luminosity' },
+        },
+        'isolation': {
+          'isolate': { isolation: 'isolate' },
+          'auto': { isolation: 'auto' },
+        }
+    }
+
+    Object.entries(pluginUtilities)
+      .filter(([ modifier, values ]) => !_.isEmpty(values))
+      .forEach(([ modifier, values ]) => {
+        const variantName = Object.keys(Object.entries(values)[0][1])[0]
+        const utilities = flatten(
+          { [`.${e(`${modifier}`)}`]: values },
+          { delimiter: '-', maxDepth: 2 },
+        )
+
+        addUtilities(utilities, variants(variantName, ['responsive']))
+      })
   }
 }

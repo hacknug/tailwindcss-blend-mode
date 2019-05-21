@@ -20,7 +20,20 @@ yarn add -D tailwindcss-blend-mode
 ## Usage
 
 ```js
-require('tailwindcss-blend-mode')(['responsive'])
+// tailwind.config.js
+{
+  theme: {},  // no options to configure
+
+  variants: { // all the following default to ['responsive']
+    mixBlendMode: ['responsive'],
+    backgroundBlendMode: ['responsive'],
+    isolation: ['responsive'],
+  },
+
+  plugins: [
+    require('tailwindcss-blend-mode'), // no options to configure
+  ],
+}
 ```
 
 ```css
@@ -58,6 +71,6 @@ require('tailwindcss-blend-mode')(['responsive'])
 .bg-blend-color { background-blend-mode: color; }
 .bg-blend-luminosity { background-blend-mode: luminosity; }
 
-.isolate { isolation: isolate; }
-.isolate-none { isolation: auto; }
+.isolation-isolate { isolation: isolate; }
+.isolation-auto { isolation: auto; }
 ```

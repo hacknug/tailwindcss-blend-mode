@@ -1,3 +1,6 @@
+const plugin = require('./index.js')
+const pluginOptions = {}
+
 module.exports = {
   theme: {
     isolation: ['isolate', 'auto'],
@@ -7,4 +10,6 @@ module.exports = {
       'exclusion', 'hue', 'saturation', 'color', 'luminosity',
     ],
   },
+
+  plugins: [plugin(pluginOptions)],
 }

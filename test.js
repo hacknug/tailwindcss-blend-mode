@@ -11,7 +11,7 @@ const generatePluginCss = (testConfig = {}, pluginOptions = {}) => {
     corePlugins: false,
     plugins: [ plugin(pluginOptions) ],
   }
-  const postcssPlugins =[
+  const postcssPlugins = [
     tailwindcss(_.merge(sandboxConfig, testConfig)),
   ]
 

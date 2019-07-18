@@ -1,0 +1,15 @@
+const plugin = require('./index.js')
+const pluginOptions = {}
+
+module.exports = {
+  theme: {
+    isolation: ['isolate', 'auto'],
+    mixBlendMode: [
+      'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
+      'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference',
+      'exclusion', 'hue', 'saturation', 'color', 'luminosity',
+    ],
+  },
+
+  plugins: [plugin(pluginOptions)],
+}

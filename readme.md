@@ -31,7 +31,7 @@ yarn add -D tailwindcss-blend-mode
   },
 
   plugins: [
-    require('tailwindcss-blend-mode'), // no options to configure
+    require('tailwindcss-blend-mode')(), // no options to configure
   ],
 }
 ```

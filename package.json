@@ -36,6 +36,6 @@
     "jest": "^26.2.1",
     "jest-matcher-css": "^1.0.3",
     "postcss": "^8.0.9",
-    "tailwindcss": "^1.0.1"
+    "tailwindcss": "^2.0.3"
   }
 }

@@ -33,7 +33,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "jest": "^26.2.1",
+    "jest": "^27.0.4",
     "jest-matcher-css": "^1.0.3",
     "postcss": "^8.0.9",
     "tailwindcss": "^1.0.1"
